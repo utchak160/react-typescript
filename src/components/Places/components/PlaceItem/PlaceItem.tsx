@@ -1,9 +1,11 @@
 import React from "react";
 
 import Card from "../../../Shared/Card/Card";
+import Button from "../../../Shared/FormElements/Button/Button";
 import './PlaceItem.css'
 
 const PlaceItem = (props: any) => {
+    const {lng, lat} = props.center;
     return <li className="place-item">
         <Card className="place-item__content">
             <div className="place-item__image">
@@ -15,9 +17,9 @@ const PlaceItem = (props: any) => {
                 <p>{props.description}</p>
             </div>
             <div className="place-item__actions">
-                <button>VIEW ON MAP</button>
-                <button>EDIT</button>
-                <button>DELETE</button>
+                <Button inverse to={`/place/map/${lng}/${lat}`}>VIEW ON MAP</Button>
+                <Button to={`/place/${props.id}`}>EDIT</Button>
+                <Button danger>DELETE</Button>
             </div>
         </Card>
     </li>

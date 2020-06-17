@@ -4,13 +4,10 @@ export interface Place {
     address: string;
     creator: string;
     imageUrl: string;
-    coordinates: coordinate;
-    latitude: number;
-    longitude: number;
+    center: {
+        lng: number,
+        lat: number
+    };
     description: string;
 }
 
-export enum coordinate {
-    latitude,
-    longitude
-}

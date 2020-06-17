@@ -1,16 +1,18 @@
 import React from "react";
 
-import './UserList.css';
-
 import {UserItem} from "../UserItem/UserItem";
+import Card from "../../../Shared/Card/Card";
 import {User} from "../../../../models/user";
+import './UserList.css';
 
 export const UserList = (props: any) => {
     if (props.items.length === 0) {
         return (
-            <div className="text-center">
-                <h3>No items found!</h3>
-            </div>
+            <Card>
+                <div className="text-center">
+                    <h3>No items found!</h3>
+                </div>
+            </Card>
         );
     }
 

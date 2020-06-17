@@ -1,10 +1,21 @@
 import React from "react";
 
 import PlaceItem from "../PlaceItem/PlaceItem";
+import Card from "../../../Shared/Card/Card";
 import './PlaceList.css';
 import {Place} from "../../../../models/place";
 
 const PlaceList = (props: any) => {
+    if (props.items.length === 0) {
+        return (
+            <Card>
+                <div className="text-center">
+                    <h3>No items found!</h3>
+                </div>
+            </Card>
+        );
+    }
+
     return (
         <ul className="place-list">
             {props.items.map((place: Place) => (
@@ -16,9 +27,9 @@ const PlaceList = (props: any) => {
                 description={place.description}
                 address={place.address}
                 creatorId={place.creator}
-                coordinates={place.coordinates}
+                center={place.center}
                 />
-            ))};
+            ))}
         </ul>
     );
 };
