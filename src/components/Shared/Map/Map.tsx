@@ -18,7 +18,7 @@ const Map = (props: any) => {
             center: [lng, lat], // starting position [lng, lat]
             zoom: zoom // starting zoom
         });
-        var marker = new mapboxgl.Marker()
+        new mapboxgl.Marker()
             .setLngLat([lng, lat])
             .addTo(map);
     }, [lng, lat, zoom])
