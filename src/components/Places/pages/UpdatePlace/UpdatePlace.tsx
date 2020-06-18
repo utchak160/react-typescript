@@ -75,7 +75,6 @@ const validationSchema = Yup.object({
 const UpdatePlace = () => {
     const classes = useStyles();
     const {placeId} = useParams();
-    console.log(placeId);
     const place = DUMMY_PLACES.find(p => p.id === placeId);
 
     if (!place) {
