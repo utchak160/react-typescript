@@ -57,7 +57,7 @@ const AddPlace = (props: any) => {
                 <Formik
                     validateOnChange={true}
                     validationSchema={validationSchema}
-                    initialValues={{title: '', description: ''}}
+                    initialValues={{title: '', description: '', address: ''}}
                     onSubmit={(data, {setSubmitting}) => {
                         setSubmitting(true);
                         console.log('[Data]', data);
