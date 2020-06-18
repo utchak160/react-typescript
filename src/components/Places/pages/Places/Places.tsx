@@ -32,8 +32,6 @@ const Places: React.FC = () => {
         }
     ];
     const {userId} = useParams();
-    // const userId = userId1;
-    console.log(userId);
     const loadedPlace = DUMMY_PLACES.filter(place => place.creator === userId);
     return (
         <PlaceList items={loadedPlace}/>

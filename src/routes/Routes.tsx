@@ -4,6 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 import MainNavigation from "../components/Shared/Header/MainNavigation/MainNavigation";
 import Places from "../components/Places/pages/Places/Places";
 import AddPlace from "../components/Places/pages/AddPlace/AddPlace";
+import UpdatePlace from "../components/Places/pages/UpdatePlace/UpdatePlace";
 import MapBox from "../components/Shared/Map/Map";
 import {Users} from "../components/Users/pages/Users/Users";
 
@@ -27,6 +28,9 @@ const routes = () => {
                     </Route>
                     <Route exact path="/place/new">
                         <AddPlace/>
+                    </Route>
+                    <Route exact path="/place/:placeId">
+                        <UpdatePlace/>
                     </Route>
                     <Redirect to="/" />
                 </Switch>
