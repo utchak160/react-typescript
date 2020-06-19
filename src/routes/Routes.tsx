@@ -6,6 +6,7 @@ import Places from "../components/Places/pages/Places/Places";
 import AddPlace from "../components/Places/pages/AddPlace/AddPlace";
 import UpdatePlace from "../components/Places/pages/UpdatePlace/UpdatePlace";
 import MapBox from "../components/Shared/Map/Map";
+import Auth from "../components/Users/pages/Auth/Auth";
 import {Users} from "../components/Users/pages/Users/Users";
 
 const routes = () => {
@@ -31,6 +32,9 @@ const routes = () => {
                     </Route>
                     <Route exact path="/place/:placeId">
                         <UpdatePlace/>
+                    </Route>
+                    <Route exact path="/user/auth">
+                        <Auth/>
                     </Route>
                     <Redirect to="/" />
                 </Switch>

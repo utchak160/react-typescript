@@ -98,7 +98,6 @@ const UpdatePlace = () => {
                     initialValues={{title: place.title, description: place.description, address: place.address}}
                     onSubmit={(data, {setSubmitting}) => {
                         setSubmitting(true);
-                        console.log('[Data]', data);
                         setSubmitting(false);
                     }}>
                     <Form>
