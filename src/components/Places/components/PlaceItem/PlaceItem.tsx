@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 
 import Card from "../../../Shared/Card/Card";
 import Button from "../../../Shared/FormElements/Button/Button";
@@ -7,6 +7,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import {AuthContext} from "../../../Shared/context/auth-context";
 import './PlaceItem.css'
 
 const PlaceItem = (props: any) => {
@@ -52,6 +53,7 @@ const PlaceItem = (props: any) => {
     };
 
     const {lng, lat} = props.center;
+    const auth = useContext(AuthContext);
     return <li className="place-item">
         <Card className="place-item__content">
             <div className="place-item__image">
@@ -64,8 +66,8 @@ const PlaceItem = (props: any) => {
             </div>
             <div className="place-item__actions">
                 <Button inverse to={`/place/map/${lng}/${lat}`}>VIEW ON MAP</Button>
-                <Button to={`/place/${props.id}`}>EDIT</Button>
-                <Button danger onClick={handleClickOpen}>DELETE</Button>
+                {auth.isLoggedIn && <Button to={`/place/${props.id}`}>EDIT</Button>}
+                {auth.isLoggedIn && <Button danger onClick={handleClickOpen}>DELETE</Button>}
                 <DialogBox/>
             </div>
         </Card>

@@ -10,6 +10,7 @@ import Auth from "../components/Users/pages/Auth/Auth";
 import {Users} from "../components/Users/pages/Users/Users";
 
 const routes = () => {
+
     return (
         <Router>
             <MainNavigation/>
@@ -36,7 +37,7 @@ const routes = () => {
                     <Route exact path="/user/auth">
                         <Auth/>
                     </Route>
-                    <Redirect to="/" />
+                    <Redirect to="/"/>
                 </Switch>
             </main>
         </Router>

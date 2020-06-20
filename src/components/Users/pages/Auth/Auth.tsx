@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState, useContext} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {FieldAttributes, Form, Formik, useField} from "formik";
 import Input from "@material-ui/core/Input";
@@ -10,6 +10,7 @@ import Button from "@material-ui/core/Button";
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import {AuthContext} from "../../../Shared/context/auth-context";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,10 +37,18 @@ const validationSchema = Yup.object({
 })
 
 const Auth = (props: any) => {
+    const auth = useContext(AuthContext);
     const [isLoginMode, setIsLoginMode] = useState(true);
 
     const switchModeHandler = () => {
         setIsLoginMode(prevState => !prevState)
+    };
+
+    const submitHandler = (props: any) => {
+        if (isLoginMode) {
+            props.data.name = undefined;
+        }
+        console.log('[Auth]', props.data);
     };
 
     const classes = useStyles();
@@ -56,10 +65,13 @@ const Auth = (props: any) => {
                             validationSchema={validationSchema}
                             initialValues={{email: '', password: '', name: ''}}
                             onSubmit={(data, {setSubmitting}) => {
+                                // console.log('[Auth]', data);
                                 setSubmitting(true);
-                                console.log('[Auth]', data);
+                                submitHandler({data: data});
+                                auth.login();
                                 setSubmitting(false);
-                            }}>
+                            }}
+                        >
                             <Form>
                                 {!isLoginMode && <MyInputField name="name" placeholder="Name" type="text"/>}
                                 <MyInputField name="email" placeholder="Email" type="text"/>
