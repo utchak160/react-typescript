@@ -45,15 +45,6 @@ const Auth = (props: any) => {
         setIsLoginMode(prevState => !prevState)
     };
 
-    const submitHandler = (props: any) => {
-        if (isLoginMode) {
-            props.data.name = undefined;
-            authController.login(props);
-        }
-        authController.register(props);
-        console.log('[Auth]', props.data);
-    };
-
     const classes = useStyles();
     return (
         <Card>
@@ -69,7 +60,9 @@ const Auth = (props: any) => {
                             initialValues={{email: '', password: '', name: ''}}
                             onSubmit={(data, {setSubmitting}) => {
                                 setSubmitting(true);
-                                submitHandler({data: data});
+                                // submitHandler({data: data});
+                                authController.register(data);
+
                                 auth.login();
                                 setSubmitting(false);
                             }}
