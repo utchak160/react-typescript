@@ -11,6 +11,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import {AuthContext} from "../../../Shared/context/auth-context";
+import {authController} from "../../../../controllers/auth.controller";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +35,7 @@ const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Enter a valid email!').required('Email is required'),
     password: Yup.string().min(8, 'Password must of 8 letter')
-})
+});
 
 const Auth = (props: any) => {
     const auth = useContext(AuthContext);
@@ -47,7 +48,9 @@ const Auth = (props: any) => {
     const submitHandler = (props: any) => {
         if (isLoginMode) {
             props.data.name = undefined;
+            authController.login(props);
         }
+        authController.register(props);
         console.log('[Auth]', props.data);
     };
 
@@ -65,7 +68,6 @@ const Auth = (props: any) => {
                             validationSchema={validationSchema}
                             initialValues={{email: '', password: '', name: ''}}
                             onSubmit={(data, {setSubmitting}) => {
-                                // console.log('[Auth]', data);
                                 setSubmitting(true);
                                 submitHandler({data: data});
                                 auth.login();
